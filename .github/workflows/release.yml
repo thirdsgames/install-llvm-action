@@ -1,4 +1,4 @@
-name: Check and Test
+name: Create release
 
 on: [push]
 
@@ -12,5 +12,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "v1"
           prerelease: true
-          title: "Development Build"
-          files:
+          title: "v1"
