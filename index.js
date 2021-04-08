@@ -55,6 +55,7 @@ try {
         default: {
             // Assume linux.
             const installLocationRoot = "/home/runner/llvm";
+            ex("mkdir " + installLocationRoot);
             switch (llvmVersion) {
                 case "11.1.0": {
                     const installLocation = installLocationRoot + "/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04";
