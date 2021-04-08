@@ -7,7 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Update release
-        uses: johnwbyrd/update-release@v1
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v1"
+          prerelease: true
+          title: "Development Build"
+          files:
