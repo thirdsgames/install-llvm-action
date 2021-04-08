@@ -5,7 +5,7 @@ const { exec } = require("child_process");
 try {
     const llvmVersion = core.getInput('llvm-version');
     const env = core.getInput('env-var');
-    core.info(`Installing LLVM version ${nameToGreet}...`);
+    core.info(`Installing LLVM version ${llvmVersion}...`);
 
     switch (process.platform) {
         case "win32": {
