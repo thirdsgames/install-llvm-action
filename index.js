@@ -3,8 +3,12 @@ const github = require('@actions/github');
 const { exec } = require("child_process");
 
 function ex(proc) {
-    exec(proc, function (err, stdout, stderr) {
-        core.info(stdout)
+    var child = exec(proc);
+    child.stdout.on('data', function (data) {
+        core.info(data.toString());
+    });
+    child.stderr.on('data', function (data) {
+        core.info(data.toString());
     });
 }
 
