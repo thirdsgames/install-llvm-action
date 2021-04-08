@@ -15,6 +15,8 @@ try {
         case "win32": {
             const installLocation = "C:/llvm";
             switch (llvmVersion) {
+                case "11":
+                case "11.0":
                 case "11.0.0": {
                     exec("mkdir " + installLocation);
 
@@ -51,6 +53,8 @@ try {
             const installLocationRoot = "/home/runner/llvm";
             exec("mkdir " + installLocationRoot);
             switch (llvmVersion) {
+                case "11":
+                case "11.1":
                 case "11.1.0": {
                     const installLocation = installLocationRoot + "/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04";
                     exec("mkdir " + installLocation);
@@ -73,5 +77,6 @@ try {
 
     core.info("Installation complete!");
 } catch (error) {
+    core.error(error.message);
     core.setFailed(error.message);
 }
