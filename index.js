@@ -22,6 +22,7 @@ try {
             switch (llvmVersion) {
                 case "11.1.0": {
                     const installLocation = installLocationRoot + "/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04";
+                    exec("mkdir " + installLocation)
                     exec("curl -LJO https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
                     exec("tar -xvf clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz -C " + installLocationRoot);
                     exec("rm clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
