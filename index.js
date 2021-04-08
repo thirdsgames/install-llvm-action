@@ -13,7 +13,7 @@ try {
 
     switch (process.platform) {
         case "win32": {
-            const installLocation = "C:/llvm";
+            const installLocation = "C:\\llvm";
             switch (llvmVersion) {
                 case "11":
                 case "11.0":
@@ -22,15 +22,15 @@ try {
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.bin.tar.gz");
                     exec("tar -xvf llvm-11.0.0.bin.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.bin.tar.gz");
+                    exec("rd llvm-11.0.0.bin.tar.gz");
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.lib.tar.gz");
                     exec("tar -xvf llvm-11.0.0.lib.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.lib.tar.gz");
+                    exec("rd llvm-11.0.0.lib.tar.gz");
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.include.tar.gz");
                     exec("tar -xvf llvm-11.0.0.include.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.include.tar.gz");
+                    exec("rd llvm-11.0.0.include.tar.gz");
 
                     exec(installLocation + "/bin/llvm-config.exe --version");
                     if (env != "") {
