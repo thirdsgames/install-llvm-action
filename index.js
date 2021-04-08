@@ -2,6 +2,12 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { exec } = require("child_process");
 
+function ex(proc) {
+    exec(proc, function (err, stdout, stderr) {
+        core.info(stdout)
+    });
+}
+
 try {
     const llvmVersion = core.getInput('llvm-version');
     const env = core.getInput('env-var');
@@ -12,21 +18,21 @@ try {
             const installLocation = "C:/llvm";
             switch (llvmVersion) {
                 case "11.0.0": {
-                    exec("mkdir " + installLocation);
+                    ex("mkdir " + installLocation);
 
-                    exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.bin.tar.gz");
-                    exec("tar -xvf llvm-11.0.0.bin.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.bin.tar.gz");
+                    ex("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.bin.tar.gz");
+                    ex("tar -xvf llvm-11.0.0.bin.tar.gz -C " + installLocation);
+                    ex("rm llvm-11.0.0.bin.tar.gz");
 
-                    exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.lib.tar.gz");
-                    exec("tar -xvf llvm-11.0.0.lib.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.lib.tar.gz");
+                    ex("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.lib.tar.gz");
+                    ex("tar -xvf llvm-11.0.0.lib.tar.gz -C " + installLocation);
+                    ex("rm llvm-11.0.0.lib.tar.gz");
 
-                    exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.include.tar.gz");
-                    exec("tar -xvf llvm-11.0.0.include.tar.gz -C " + installLocation);
-                    exec("rm llvm-11.0.0.include.tar.gz");
+                    ex("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.include.tar.gz");
+                    ex("tar -xvf llvm-11.0.0.include.tar.gz -C " + installLocation);
+                    ex("rm llvm-11.0.0.include.tar.gz");
 
-                    exec(installLocation + "/bin/llvm-config.exe --version");
+                    ex(installLocation + "/bin/llvm-config.exe --version");
                     if (env != "") {
                         core.exportVariable(env, installLocation);
                     }
@@ -48,13 +54,13 @@ try {
             switch (llvmVersion) {
                 case "11.1.0": {
                     const installLocation = installLocationRoot + "/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04";
-                    exec("mkdir " + installLocation);
-                    exec("curl -LJO https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
-                    exec("tar -xvf clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz -C " + installLocationRoot);
-                    exec("rm clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
-                    exec(installLocation + "/bin/llvm-config --version");
+                    ex("mkdir " + installLocation);
+                    ex("curl -LJO https://github.com/llvm/llvm-project/releases/download/llvmorg-11.1.0/clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
+                    ex("tar -xvf clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz -C " + installLocationRoot);
+                    ex("rm clang+llvm-11.1.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz");
+                    ex(installLocation + "/bin/llvm-config --version");
                     if (env != "") {
-                        core.log(`Setting environment variable ${env} to ${installLocation}.`);
+                        core.info(`Setting environment variable ${env} to ${installLocation}.`);
                         core.exportVariable(env, installLocation);
                     }
                     break;
