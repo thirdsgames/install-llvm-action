@@ -22,15 +22,15 @@ try {
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.bin.tar.gz");
                     exec("tar -xvf llvm-11.0.0.bin.tar.gz -C " + installLocation);
-                    exec("rd llvm-11.0.0.bin.tar.gz");
+                    exec("del llvm-11.0.0.bin.tar.gz");
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.lib.tar.gz");
                     exec("tar -xvf llvm-11.0.0.lib.tar.gz -C " + installLocation);
-                    exec("rd llvm-11.0.0.lib.tar.gz");
+                    exec("del llvm-11.0.0.lib.tar.gz");
 
                     exec("curl -LJO https://github.com/thirdsgames/llvm-binaries-win/releases/download/latest/llvm-11.0.0.include.tar.gz");
                     exec("tar -xvf llvm-11.0.0.include.tar.gz -C " + installLocation);
-                    exec("rd llvm-11.0.0.include.tar.gz");
+                    exec("del llvm-11.0.0.include.tar.gz");
 
                     exec(installLocation + "/bin/llvm-config.exe --version");
                     if (env != "") {
