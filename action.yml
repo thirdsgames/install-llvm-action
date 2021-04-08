@@ -1,0 +1,13 @@
+name: "Hello World"
+description: "Greet someone and record the time"
+inputs:
+  llvm-version:
+    description: "Version of LLVM to install"
+    required: true
+    default: "11.1.0"
+  env-var:
+    description: "An environment variable which will be set to the install location"
+    required: false
+runs:
+  using: "node12"
+  main: "index.js"
